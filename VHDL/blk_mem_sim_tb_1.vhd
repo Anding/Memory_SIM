@@ -2,16 +2,18 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+library xil_defaultlib;
 
 entity blk_mem_sim_tb_1 is
 end entity;
 	
-architecture blk_mem_sim_tb_1 is
-constant COL_WIDTH integer := 8;
-constant NB_COL_A integer := 4,
-constant ADDRWIDTH_A integer := 13,
-constant NB_COL_B integer := 1,
-constant CADDRWIDTH_B integer := 15
+architecture testbench of blk_mem_sim_tb_1 is
+	
+constant COL_WIDTH : integer := 8;
+constant NB_COL_A : integer := 4;
+constant ADDRWIDTH_A : integer := 13;
+constant NB_COL_B : integer := 1;
+constant ADDRWIDTH_B : integer := 15;
 constant clock_freq : natural := 100E6;
 constant clock_period : time := 1 sec / clock_freq;
 constant half_clock_period : time := clock_period / 2;
@@ -32,13 +34,14 @@ signal doutB : std_logic_vector(COL_WIDTH * NB_COL_B - 1 downto 0);
   	
 begin
 	
-DUT: entity blk_mem_sim(sim) 
+DUT: entity xil_defaultlib.blk_mem_sim(sim) 
 	generic map(
 		COL_WIDTH => 8,
 		NB_COL_A => 4,
 		ADDRWIDTH_A	=> 13,
 		NB_COL_B => 1,
-		CADDRWIDTH_B => 15
+		ADDRWIDTH_B => 15,
+		INIT_FILE => "C:\Work\Memory_SIM\Resources\RAM.txt"
  )
  	port map(
 		clkA => clk,
@@ -68,7 +71,8 @@ begin
 	test_ok <= true; 
 	wait for clock_period;
 	std.env.finish;
-end process
+	
+end process;
 
 end architecture;
 

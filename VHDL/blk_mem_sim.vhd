@@ -10,7 +10,8 @@ entity blk_mem_sim is
   ADDRWIDTH_A	: integer := 13;  	-- width of the COL_A address_bus in BITS
   									-- compute as log2(capacity_in_bytes / NB_COL), e.g. log2(32768 / 4) = 13
   NB_COL_B		: integer := 1;
-  ADDRWIDTH_B	: integer := 15  	-- e.g. log2(32768 / 1) = 15
+  ADDRWIDTH_B	: integer := 15;  	-- e.g. log2(32768 / 1) = 15
+  INIT_FILE		: string  := ""
  );
 
  port(

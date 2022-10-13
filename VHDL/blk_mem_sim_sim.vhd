@@ -7,15 +7,16 @@ use std.textio.all;
 architecture sim of blk_mem_sim is
 constant depth_A : integer := (2 ** ADDRWIDTH_A) * NB_COL_A;
 constant depth_B : integer := (2 ** ADDRWIDTH_B) * NB_COL_B;
+constant zero : std_logic_vector(COL_WIDTH - 1 downto 0) := (others=>'0');
 -- 
 type RAM_type is array (0 to depth_A - 1) of std_logic_vector(COL_WIDTH - 1 downto 0);
 
 -- https://vhdlwhiz.com/initialize-ram-from-file
 -- https://vhdlwhiz.com/stimulus-file/
 impure function init_RAM return RAM_type is
- 	variable RAM_initialized : RAM_type;
+ 	variable RAM_initialized : RAM_type := (others => zero);
  	variable i : integer := 0; 	
-	file text_file : text open read_mode is "C:test\RAM.txt";
+	file text_file : text open read_mode is init_file; --"C:\Work\Memory_SIM\Resources\RAM.txt";
 	variable text_line : line;
  	variable RAM_value : std_ulogic_vector(COL_WIDTH - 1 downto 0);	
 	variable ok : boolean;
@@ -26,7 +27,7 @@ begin
     	within_each_line: loop				-- process each value on each line
     		hread(text_line, RAM_value, ok);
     		exit within_each_line when ok = false;
-    		RAM_initialize(i) := RAM_value;
+    		RAM_initialized(i) := RAM_value;
     		i := i + 1;
     		assert (i = depth_A)
     			report "Initialization file is deeper than the RAM"
