@@ -11,7 +11,7 @@ entity blk_mem_sim is
   									-- compute as log2(capacity_in_bytes / NB_COL), e.g. log2(32768 / 4) = 13
   NB_COL_B		: integer := 1;
   ADDRWIDTH_B	: integer := 15;  	-- e.g. log2(32768 / 1) = 15
-  INIT_FILE		: string  := ""
+  INIT_FILE		: string  := ""		-- e.g. "C:\Work\Memory_SIM\Resources\RAM.txt", or "" for no initialization file
  );
 
  port(

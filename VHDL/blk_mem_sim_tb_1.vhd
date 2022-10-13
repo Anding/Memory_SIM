@@ -36,11 +36,11 @@ begin
 	
 DUT: entity xil_defaultlib.blk_mem_sim(sim) 
 	generic map(
-		COL_WIDTH => 8,
-		NB_COL_A => 4,
-		ADDRWIDTH_A	=> 13,
-		NB_COL_B => 1,
-		ADDRWIDTH_B => 15,
+		COL_WIDTH => COL_WIDTH,
+		NB_COL_A => NB_COL_A,
+		ADDRWIDTH_A	=> ADDRWIDTH_A,
+		NB_COL_B => NB_COL_B,
+		ADDRWIDTH_B => ADDRWIDTH_B,
 		INIT_FILE => "C:\Work\Memory_SIM\Resources\RAM.txt"
  )
  	port map(

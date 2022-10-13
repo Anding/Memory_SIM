@@ -1,0 +1,2 @@
+reset_project
+reset_sim sim_1
