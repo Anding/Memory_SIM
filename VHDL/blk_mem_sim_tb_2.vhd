@@ -10,10 +10,11 @@ end entity;
 architecture testbench of blk_mem_sim_tb_2 is
 	
 constant COL_WIDTH : integer := 8;
-constant NB_COL_A : integer := 4;
-constant ADDRWIDTH_A : integer := 13;
+constant NB_COL_A : integer := 1;
+constant ADDRWIDTH_A : integer := 3;
 constant NB_COL_B : integer := 1;
-constant ADDRWIDTH_B : integer := 15;
+constant ADDRWIDTH_B : integer := 3;
+constant depth_A : integer := (2 ** ADDRWIDTH_A) * NB_COL_A;
 constant clock_freq : natural := 100E6;
 constant clock_period : time := 1 sec / clock_freq;
 constant half_clock_period : time := clock_period / 2;
@@ -31,9 +32,10 @@ signal dinA  : std_logic_vector(COL_WIDTH * NB_COL_A - 1 downto 0) := (others=>'
 signal dinB  : std_logic_vector(COL_WIDTH * NB_COL_B - 1 downto 0) := (others=>'0');
 signal doutA : std_logic_vector(COL_WIDTH * NB_COL_A - 1 downto 0);
 signal doutB : std_logic_vector(COL_WIDTH * NB_COL_B - 1 downto 0);
-	
-constant MEMORY_A is array (0 to 7) of std_logic_vector(7 downto 0) := 
-	x"00", x"01", x"02", x"03", x"04", x"05", x"06", x"07";
+
+type RAM_type is array (0 to depth_A - 1) of std_logic_vector(COL_WIDTH - 1 downto 0);	
+constant MEMORY_A : RAM_type := (
+	x"00", x"01", x"02", x"03", x"04", x"05", x"06", x"07", others => x"00");
   	
 begin
 	
@@ -74,11 +76,11 @@ procedure read_MEM_A (
 	address : in std_logic_vector(ADDRWIDTH_A - 1 downto 0)
 ) is
 begin
-	addr_A <= address;
+	addrA <= address;
 	wait until rising_edge(clk);
-	data <= doutA;
+	data := doutA;
 	
-end proceduere;
+end procedure;
 
 procedure verify_MEM_A ( 
 	-- read the databus on channel A at a given memory address with the expected data
@@ -86,7 +88,7 @@ procedure verify_MEM_A (
 	address : in std_logic_vector(ADDRWIDTH_A - 1 downto 0)
 ) is
 begin
-	addr_A <= address;
+	addrA <= address;
 	wait until rising_edge(clk);
 	wait for 1 ps;
 	assert data = doutA
@@ -94,7 +96,7 @@ begin
 				", expected " & to_hstring(data) & ", obtained " & to_hstring(doutA)
 		severity failure;
 	
-end proceduere;
+end procedure;
 
 begin
 	wait for 4 * clock_period;
@@ -103,8 +105,8 @@ begin
 	wait until rising_edge(clk);
 	
 	-- verify memory contents through channel A	
-	for i in (0 to Memory_A.top) loop
-		verify_MEM_A(Memory_A(i), i);
+	for i in Memory_A'range loop
+		verify_MEM_A(Memory_A(i), std_logic_vector(to_unsigned(i, ADDRWIDTH_A)) );
 	end loop;
 	
 	wait for 1 * clock_period;

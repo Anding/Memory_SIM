@@ -19,9 +19,9 @@ entity blk_mem_sim is
   clkB  : in  std_logic;
   enA   : in  std_logic;
   enB   : in  std_logic;
-  weA   : in  std_logic_vector(NB_COL_A - 1 downto 0);
+  weA   : in  std_logic_vector(NB_COL_A - 1 downto 0);					-- byte write-enable
   weB	: in  std_logic_vector(NB_COL_B - 1 downto 0);
-  addrA : in  std_logic_vector(ADDRWIDTH_A - 1 downto 0);
+  addrA : in  std_logic_vector(ADDRWIDTH_A - 1 downto 0);				-- cell address (not necessarily byte address)
   addrB : in  std_logic_vector(ADDRWIDTH_B - 1 downto 0);
   dinA   : in  std_logic_vector(COL_WIDTH * NB_COL_A - 1 downto 0);
   dinB   : in  std_logic_vector(COL_WIDTH * NB_COL_B - 1 downto 0);
