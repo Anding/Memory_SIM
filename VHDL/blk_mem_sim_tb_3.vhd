@@ -4,18 +4,19 @@ use ieee.numeric_std.all;
 
 library xil_defaultlib;
 
--- instantiate the memory and test initialization with byte-by-byte read on channels A and B
-entity blk_mem_sim_tb_2 is
+-- instantiate the memory and test initialization with word width and long width read on channels A and B
+entity blk_mem_sim_tb_3 is
 end entity;
 
-architecture testbench of blk_mem_sim_tb_2 is
+architecture testbench of blk_mem_sim_tb_3 is
 	
 constant COL_WIDTH : integer := 8;
-constant NB_COL_A : integer := 1;
-constant ADDRWIDTH_A : integer := 4;
-constant NB_COL_B : integer := 1;
-constant ADDRWIDTH_B : integer := 4;
-constant depth_A : integer := 2 ** ADDRWIDTH_A;			-- cell depth not necessarily byte depth
+constant NB_COL_A : integer := 2;
+constant ADDRWIDTH_A : integer := 3;
+constant NB_COL_B : integer := 4;
+constant ADDRWIDTH_B : integer := 2;
+constant depth_A : integer := 2 ** ADDRWIDTH_A;		-- cell depth not byte depth
+constant depth_B : integer := 2 ** ADDRWIDTH_B;	
 constant clock_freq : natural := 100E6;
 constant clock_period : time := 1 sec / clock_freq;
 constant half_clock_period : time := clock_period / 2;
@@ -34,11 +35,14 @@ signal dinB  : std_logic_vector(COL_WIDTH * NB_COL_B - 1 downto 0) := (others=>'
 signal doutA : std_logic_vector(COL_WIDTH * NB_COL_A - 1 downto 0);
 signal doutB : std_logic_vector(COL_WIDTH * NB_COL_B - 1 downto 0);
 
-type RAM_type is array (0 to depth_A - 1) of std_logic_vector(COL_WIDTH - 1 downto 0);	
-constant RAM_expected : RAM_type := (
-	x"00", x"01", x"02", x"03", x"04", x"05", x"06", x"07", 
-	x"08", x"09", x"0A", x"0B", x"0C", x"0D", x"0E", x"0F", others => x"00");
+type RAM_A_type is array (0 to depth_A - 1) of std_logic_vector(NB_COL_A * COL_WIDTH - 1 downto 0);	
+constant RAM_A_expected : RAM_A_type := (
+	x"0100", x"0302", x"0504", x"0706", x"0908", x"0B0A", x"0D0C", x"0F0E", others => x"0000");
   	
+type RAM_B_type is array (0 to depth_B - 1) of std_logic_vector(NB_COL_B * COL_WIDTH - 1 downto 0);	
+constant RAM_B_expected : RAM_B_type := (
+	x"03020100", x"07060504", x"0B0A0908", x"0F0E0D0C", others => x"00000000");
+
 begin
 	
 DUT: entity xil_defaultlib.blk_mem_sim(sim) 
@@ -48,7 +52,7 @@ DUT: entity xil_defaultlib.blk_mem_sim(sim)
 		ADDRWIDTH_A	=> ADDRWIDTH_A,
 		NB_COL_B => NB_COL_B,
 		ADDRWIDTH_B => ADDRWIDTH_B,
-		INIT_FILE => "C:\Work\Memory_SIM\Resources\RAM_tb2.txt"
+		INIT_FILE => "C:\Work\Memory_SIM\Resources\RAM_tb3.txt"
  )
  	port map(
 		clkA => clk,
@@ -112,14 +116,14 @@ begin
 	wait until rising_edge(clk);
 	
 	-- verify memory contents through channel A	
-	for i in RAM_expected'range loop
-		verify_MEM_A(RAM_expected(i), std_logic_vector(to_unsigned(i, ADDRWIDTH_A)) );
+	for i in RAM_A_expected'range loop
+		verify_MEM_A(RAM_A_expected(i), std_logic_vector(to_unsigned(i, ADDRWIDTH_A)) );
 	end loop;
 	
 	
 	-- verify memory contents through channel B	
-	for i in RAM_expected'range loop
-		verify_MEM_B(RAM_expected(i), std_logic_vector(to_unsigned(i, ADDRWIDTH_B)) );
+	for i in RAM_B_expected'range loop
+		verify_MEM_B(RAM_B_expected(i), std_logic_vector(to_unsigned(i, ADDRWIDTH_B)) );
 	end loop;
 	
 	wait until rising_edge(clk);

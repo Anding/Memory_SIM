@@ -1,9 +1,9 @@
 # run a regression test of the following simulations
-set sim_list "sim_1"
+set sim_list "sim_1 sim_2 sim_3"
 
 # setup
 set script_path [ file dirname [ file normalize [ info script ] ] ]
-set output_file [ file join $script_path regression.txt ]
+set output_file [ file join $script_path regression_results.txt ]
 set timestamp [clock format [clock seconds]]
 set results_dict [dict create]
 set all_tests_ok true

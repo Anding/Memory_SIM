@@ -91,5 +91,30 @@ assert (depth_A = depth_B)																	-- simulation only assert in a proces
    end if;
  end process;
 
+ port_B : process
+ variable addrLo : unsigned(log2(NB_COL_B) - 1 downto 0);								-- the address on port addrA is a cell address
+ variable addrFull : unsigned(ADDRWIDTH_B + log2(NB_COL_B) - 1 downto 0);					-- these variables will stepwise compute the byte address as an integer
+ variable addrInt : integer;
+ variable hiBitBus, loBitBus : integer;
+ 
+ begin
+  wait until rising_edge(clkB);
+   if enA = '1' then
+		for i in 0 to NB_COL_B - 1 loop														-- iterate over each byte of the databus
+   			addrLo  := to_unsigned(i, log2(NB_COL_B));										-- the full address incorporates the databus address and the current byte number
+   			addrFull := unsigned(addrB) & addrLo;												-- join unsigned types with & rather than integers with a + b * 2^n, which doesn't synthesize
+   			addrInt := to_integer(addrFull);													-- now convert to integer type for array look-up
+   			hiBitBus := (i + 1) * COL_WIDTH - 1;												-- bit positions on the bus
+   			loBitBus := i * COL_WIDTH;
+     		doutB(hiBitBus downto loBitBus) <= RAM(addrInt);
+
+	    	if weB(i) = '1' then	     													-- byte write-enable on port A
+     			RAM(addrInt) <= dinB(hiBitBus downto loBitBus);
+     		end if;
+		end loop;
+
+   end if;
+ end process;
+
 end architecture;
 

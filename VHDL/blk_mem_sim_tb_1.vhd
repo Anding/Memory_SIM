@@ -4,9 +4,10 @@ use ieee.numeric_std.all;
 
 library xil_defaultlib;
 
+-- instantiate the memory, including reading the memory file contents
 entity blk_mem_sim_tb_1 is
 end entity;
-	
+
 architecture testbench of blk_mem_sim_tb_1 is
 	
 constant COL_WIDTH : integer := 8;
@@ -41,7 +42,7 @@ DUT: entity xil_defaultlib.blk_mem_sim(sim)
 		ADDRWIDTH_A	=> ADDRWIDTH_A,
 		NB_COL_B => NB_COL_B,
 		ADDRWIDTH_B => ADDRWIDTH_B,
-		INIT_FILE => "C:\Work\Memory_SIM\Resources\RAM.txt"
+		INIT_FILE => "C:\Work\Memory_SIM\Resources\RAM_tb1.txt"
  )
  	port map(
 		clkA => clk,

@@ -1,0 +1,19 @@
+# any non hexadecimal characters terminate interpretation of the line
+00 ; FF gets ignored
+01
+02 03 04 05 ( sequential bytes on a single line are taken in order )
+06 -- this will be a comment
+07
+08
+09
+# blank lines are also excluded
+
+0A
+0B
+0C
+0D
+0E
+0F
+
+
+; blank lines or comments at the end of a file

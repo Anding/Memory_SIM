@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="blk_mem_sim_tb_3_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="blk_mem_sim_tb_3" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="200.001 ns"></ZoomEndTime>
+      <Cursor1Time time="200.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="279"></NameColumnWidth>
+      <ValueColumnWidth column_width="90"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/blk_mem_sim_tb_3/test_ok" type="other">
+      <obj_property name="ElementShortName">test_ok</obj_property>
+      <obj_property name="ObjectShortName">test_ok</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/enA" type="logic">
+      <obj_property name="ElementShortName">enA</obj_property>
+      <obj_property name="ObjectShortName">enA</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/enB" type="logic">
+      <obj_property name="ElementShortName">enB</obj_property>
+      <obj_property name="ObjectShortName">enB</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/weA" type="array">
+      <obj_property name="ElementShortName">weA[1:0]</obj_property>
+      <obj_property name="ObjectShortName">weA[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/weB" type="array">
+      <obj_property name="ElementShortName">weB[3:0]</obj_property>
+      <obj_property name="ObjectShortName">weB[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/addrA" type="array">
+      <obj_property name="ElementShortName">addrA[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addrA[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/addrB" type="array">
+      <obj_property name="ElementShortName">addrB[1:0]</obj_property>
+      <obj_property name="ObjectShortName">addrB[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/dinA" type="array">
+      <obj_property name="ElementShortName">dinA[15:0]</obj_property>
+      <obj_property name="ObjectShortName">dinA[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/dinB" type="array">
+      <obj_property name="ElementShortName">dinB[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dinB[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/doutA" type="array">
+      <obj_property name="ElementShortName">doutA[15:0]</obj_property>
+      <obj_property name="ObjectShortName">doutA[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/doutB" type="array">
+      <obj_property name="ElementShortName">doutB[31:0]</obj_property>
+      <obj_property name="ObjectShortName">doutB[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/RAM_A_expected" type="array">
+      <obj_property name="ElementShortName">RAM_A_expected[0:7][15:0]</obj_property>
+      <obj_property name="ObjectShortName">RAM_A_expected[0:7][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_3/RAM_B_expected" type="array">
+      <obj_property name="ElementShortName">RAM_B_expected[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">RAM_B_expected[0:3][31:0]</obj_property>
+   </wvobject>
+</wave_config>

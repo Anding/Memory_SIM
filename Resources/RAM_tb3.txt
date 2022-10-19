@@ -1,0 +1,5 @@
+00 01			; little endian word 0100
+02 03			; big endian word:   0203
+04 05 06 07		; little endian word 07060504
+08 09 0A 0B		; big endian word    08090A0B
+0C 0D 0E 0F
