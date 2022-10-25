@@ -10,12 +10,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,000.001 ns"></ZoomEndTime>
-      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
+      <ZoomStartTime time="15.323 ns"></ZoomStartTime>
+      <ZoomEndTime time="200.937 ns"></ZoomEndTime>
+      <Cursor1Time time="170.001 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="273"></NameColumnWidth>
+      <NameColumnWidth column_width="261"></NameColumnWidth>
       <ValueColumnWidth column_width="90"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="15" />
@@ -39,41 +39,43 @@
       <obj_property name="ElementShortName">enB</obj_property>
       <obj_property name="ObjectShortName">enB</obj_property>
    </wvobject>
-   <wvobject fp_name="/blk_mem_sim_tb_4/weA" type="array">
-      <obj_property name="ElementShortName">weA[1:0]</obj_property>
-      <obj_property name="ObjectShortName">weA[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/blk_mem_sim_tb_4/weB" type="array">
-      <obj_property name="ElementShortName">weB[3:0]</obj_property>
-      <obj_property name="ObjectShortName">weB[3:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/blk_mem_sim_tb_4/addrA" type="array">
       <obj_property name="ElementShortName">addrA[7:0]</obj_property>
       <obj_property name="ObjectShortName">addrA[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/blk_mem_sim_tb_4/addrB" type="array">
-      <obj_property name="ElementShortName">addrB[6:0]</obj_property>
-      <obj_property name="ObjectShortName">addrB[6:0]</obj_property>
+   <wvobject fp_name="/blk_mem_sim_tb_4/weA" type="array">
+      <obj_property name="ElementShortName">weA[1:0]</obj_property>
+      <obj_property name="ObjectShortName">weA[1:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/blk_mem_sim_tb_4/dinA" type="array">
       <obj_property name="ElementShortName">dinA[15:0]</obj_property>
       <obj_property name="ObjectShortName">dinA[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/blk_mem_sim_tb_4/dinB" type="array">
-      <obj_property name="ElementShortName">dinB[31:0]</obj_property>
-      <obj_property name="ObjectShortName">dinB[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/blk_mem_sim_tb_4/doutA_IP" type="array">
       <obj_property name="ElementShortName">doutA_IP[15:0]</obj_property>
       <obj_property name="ObjectShortName">doutA_IP[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/blk_mem_sim_tb_4/doutB_IP" type="array">
-      <obj_property name="ElementShortName">doutB_IP[31:0]</obj_property>
-      <obj_property name="ObjectShortName">doutB_IP[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/blk_mem_sim_tb_4/doutA_SIM" type="array">
       <obj_property name="ElementShortName">doutA_SIM[15:0]</obj_property>
       <obj_property name="ObjectShortName">doutA_SIM[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_4/addrB" type="array">
+      <obj_property name="ElementShortName">addrB[6:0]</obj_property>
+      <obj_property name="ObjectShortName">addrB[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_4/weB" type="array">
+      <obj_property name="ElementShortName">weB[3:0]</obj_property>
+      <obj_property name="ObjectShortName">weB[3:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_4/dinB" type="array">
+      <obj_property name="ElementShortName">dinB[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dinB[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/blk_mem_sim_tb_4/doutB_IP" type="array">
+      <obj_property name="ElementShortName">doutB_IP[31:0]</obj_property>
+      <obj_property name="ObjectShortName">doutB_IP[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/blk_mem_sim_tb_4/doutB_SIM" type="array">
       <obj_property name="ElementShortName">doutB_SIM[31:0]</obj_property>

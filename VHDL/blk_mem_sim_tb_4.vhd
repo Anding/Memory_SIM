@@ -21,7 +21,7 @@ constant depth_B : integer := 2 ** ADDRWIDTH_B;
 constant clock_freq : natural := 100E6;
 constant clock_period : time := 1 sec / clock_freq;
 constant half_clock_period : time := clock_period / 2;
-constant NUM_WRITES : integer := 100;
+constant NUM_WRITES : integer := 250;
 
 signal test_ok : boolean := false;	
 signal clk	: std_logic := '1';
@@ -114,7 +114,7 @@ procedure verify_MEM_A (
 begin
 	addrA <= address;
 	wait until rising_edge(clk);
-	wait for 1 ps;
+	wait until rising_edge(clk);
 	assert doutA_SIM = doutA_IP
 		report	"match bus A failed at address " & to_hstring(address) &
 				", IP " & to_hstring(doutA_IP) & ", simulation " & to_hstring(doutA_SIM)
@@ -130,7 +130,7 @@ procedure verify_MEM_B (
 begin
 	addrB <= address;
 	wait until rising_edge(clk);
-	wait for 1 ps;
+	wait until rising_edge(clk);
 	assert doutB_SIM = doutB_IP
 		report	"match bus B failed at address " & to_hstring(address) &
 				", IP " & to_hstring(doutB_IP) & ", simulation " & to_hstring(doutB_SIM)

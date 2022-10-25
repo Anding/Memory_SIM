@@ -9,6 +9,8 @@ constant depth_A : integer := (2 ** ADDRWIDTH_A) * NB_COL_A;
 constant depth_B : integer := (2 ** ADDRWIDTH_B) * NB_COL_B;
 constant zero : std_logic_vector(COL_WIDTH - 1 downto 0) := (others=>'0');
 type RAM_type is array (0 to depth_A - 1) of std_logic_vector(COL_WIDTH - 1 downto 0);
+--shared variable doutA_i : std_logic_vector(COL_WIDTH * NB_COL_A - 1 downto 0);
+--shared variable doutB_i : std_logic_vector(COL_WIDTH * NB_COL_B - 1 downto 0);
 
 -- Initialize the RAM from a text file
 -- https://vhdlwhiz.com/initialize-ram-from-file
@@ -58,8 +60,8 @@ begin
 	return res;
 end function log2;
 
-signal RAM : RAM_type := init_RAM;			-- init_RAM is called during setup
-											-- an incorrect filename will fail at the elaborate stage
+shared variable RAM : RAM_type := init_RAM;			-- init_RAM is called during setup
+													-- an incorrect filename will fail at the elaborate stage
 begin
 	
 assert (depth_A = depth_B)																	-- simulation only assert in a process statement
@@ -81,10 +83,13 @@ assert (depth_A = depth_B)																	-- simulation only assert in a proces
    			addrInt := to_integer(addrFull);													-- now convert to integer type for array look-up
    			hiBitBus := (i + 1) * COL_WIDTH - 1;												-- bit positions on the bus
    			loBitBus := i * COL_WIDTH;
-     		doutA(hiBitBus downto loBitBus) <= RAM(addrInt);
-
+   			
+   			-- read first
+      		doutA(hiBitBus downto loBitBus) <= RAM(addrInt);    			
+   			
 	    	if weA(i) = '1' then	     													-- byte write-enable on port A
-     			RAM(addrInt) <= dinA(hiBitBus downto loBitBus);
+     			RAM(addrInt) := dinA(hiBitBus downto loBitBus);
+--     			report "Writing addr " & integer'image(addrInt) & " with " & to_hstring(dinA(hiBitBus downto loBitBus));
      		end if;
 		end loop;
 
@@ -106,15 +111,32 @@ assert (depth_A = depth_B)																	-- simulation only assert in a proces
    			addrInt := to_integer(addrFull);													-- now convert to integer type for array look-up
    			hiBitBus := (i + 1) * COL_WIDTH - 1;												-- bit positions on the bus
    			loBitBus := i * COL_WIDTH;
+   			
+   			-- read first
      		doutB(hiBitBus downto loBitBus) <= RAM(addrInt);
-
+     			
 	    	if weB(i) = '1' then	     													-- byte write-enable on port A
-     			RAM(addrInt) <= dinB(hiBitBus downto loBitBus);
+     			RAM(addrInt) := dinB(hiBitBus downto loBitBus);
+--     			report "Writing addr " & integer'image(addrInt) & " with " & to_hstring(dinB(hiBitBus downto loBitBus));
      		end if;
 		end loop;
 
    end if;
  end process;
 
+--output_A : process
+-- begin
+-- wait until rising_edge(clkA);
+--	doutA <= doutA_i;
+--	
+-- end process;
+--
+--output_B : process
+-- begin
+-- wait until rising_edge(clkB);
+--	doutB <= doutB_i;
+--	
+-- end process;
+ 
 end architecture;
 

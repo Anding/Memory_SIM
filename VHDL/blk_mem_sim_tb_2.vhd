@@ -80,7 +80,7 @@ procedure verify_MEM_A (
 begin
 	addrA <= address;
 	wait until rising_edge(clk);
-	wait for 1 ps;
+	wait until rising_edge(clk);
 	assert data = doutA
 		report	"verify bus A failed at address " & to_hstring(address) &
 				", expected " & to_hstring(data) & ", obtained " & to_hstring(doutA)
@@ -97,7 +97,7 @@ procedure verify_MEM_B (
 begin
 	addrB <= address;
 	wait until rising_edge(clk);
-	wait for 1 ps;
+	wait until rising_edge(clk);
 	assert data = doutB
 		report	"verify bus B failed at address " & to_hstring(address) &
 				", expected " & to_hstring(data) & ", obtained " & to_hstring(doutB)
