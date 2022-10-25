@@ -1,5 +1,5 @@
 # run a regression test of the following simulations
-set sim_list "sim_1 sim_2 sim_3"
+set sim_list "sim_1 sim_2 sim_3 sim_4"
 
 # setup
 set script_path [ file dirname [ file normalize [ info script ] ] ]
